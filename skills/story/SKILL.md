@@ -1,46 +1,46 @@
 ---
 name: story
-description: Takes ONE user story from the backlog, adds 2-3 acceptance criteria and proposes a mini implementation plan for approval. Writes no code; implementation is /pair's job.
+description: Toma UNA historia de usuario del backlog, agrega 2-3 criterios de aceptación y propone un mini plan de implementación para aprobación. No escribe código; la implementación es trabajo de /pair.
 disable-model-invocation: true
 ---
 
 # Story
 
-We refine a single story, right before building it. You propose and I decide.
+Refinamos una sola historia, justo antes de construirla. Tú propones y yo decido.
 
-## Steps
+## Pasos
 
-1. **Read the story** I give you (pasted text, GitHub issue, Jira ticket, etc.) and review the current code and `CLAUDE.md` to understand the context.
-2. **Acceptance criteria.** Propose 2–3 in Given/When/Then format. They only describe *what* the user sees or gets, never *how* it's implemented.
-3. **If it needs more than 3 criteria, don't bloat it: propose splitting it.** Deliver the new stories in backlog format (`As a…, I want…, so that…`) for me to add to the tracker, and we continue with the first one.
-4. **Mini plan.** 5 bullets max, no code or file names. How it cuts through the layers, with the minimum that meets the criteria.
-5. **Wait for my approval.** We adjust until I say yes.
+1. **Lee la historia** que te doy (texto pegado, issue de GitHub, ticket de Jira, etc.) y revisa el código actual y `AGENTS.md` para entender el contexto.
+2. **Criterios de aceptación.** Propón 2–3 en formato Dado/Cuando/Entonces. Solo describen *qué* ve u obtiene el usuario, nunca *cómo* se implementa.
+3. **Si necesita más de 3 criterios, no la infles: propone dividirla.** Entrega las nuevas historias en formato backlog (`Como…, quiero…, para…`) para que yo las agregue al tracker, y seguimos con la primera.
+4. **Mini plan.** Máximo 5 bullets, sin código ni nombres de archivos. Cómo atraviesa las capas, con lo mínimo que cumple los criterios.
+5. **Espera mi aprobación.** Ajustamos hasta que yo diga que sí.
 
-## Rules
+## Reglas
 
-- **Don't invent requirements.** If information is missing, ask me.
-- **The simplest thing that meets the criteria.** No abstractions, layers, configuration or patterns "for the future".
-- **Suggest, don't decide.** If a pattern could help (Atomic Design, middleware composition, extracting a component…), mention it under "Suggestions" with its why. Only suggest it if there's a concrete signal in the code (for example, something that already repeats), not in advance.
-- **Don't write code.**
+- **No inventes requisitos.** Si falta información, pregúntame.
+- **Lo más simple que cumpla los criterios.** Sin abstracciones, capas, configuración ni patrones "para el futuro".
+- **Sugiere, no decidas.** Si un patrón podría ayudar (Atomic Design, composición de middleware, extraer un componente…), menciónalo en "Sugerencias" con su porqué. Solo sugiérelo si hay una señal concreta en el código (por ejemplo, algo que ya se repite), no por adelantado.
+- **No escribas código.**
 
-## Output format
+## Formato de salida
 
-A block ready to paste into the issue. `/pair` uses it as input.
+Un bloque listo para pegar en el issue. `/pair` lo usa como input.
 
 ```markdown
-## Story
-As a <actor>, I want <action>, so that <benefit>.
+## Historia
+Como <actor>, quiero <acción>, para <beneficio>.
 
-## Acceptance criteria
-- [ ] Given <context>, when <action>, then <result>.
+## Criterios de aceptación
+- [ ] Dado <contexto>, cuando <acción>, entonces <resultado>.
 - [ ] ...
 
 ## Plan
 - ...
 
-## Out of scope
-- <what's left out of this story, so it doesn't sneak in>
+## Fuera de alcance
+- <lo que queda fuera de esta historia, para que no se cuele>
 
-## Suggestions (your call)
-- <optional>
+## Sugerencias (decides tú)
+- <opcional>
 ```

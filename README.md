@@ -1,47 +1,60 @@
-# hola-ai
+# hola-ai (fork JotaConts)
 
-Agent skills for building software with AI **without letting go of the wheel**. Inspired by Extreme Programming: vertical user stories, acceptance criteria, test-first, pair programming, simple design.
+Skills de agentes para construir software con IA **sin soltar el timón**. Inspirado en Extreme Programming: historias de usuario verticales, criterios de aceptación, test-first, pair programming, diseño simple.
 
-The AI splits, proposes and writes code in small steps. You decide.
+La IA divide, propone y escribe código en pasos pequeños. Tú decides.
 
-## The flow
+> Fork de [nschurmann/hola-ai](https://github.com/nschurmann/hola-ai) (MIT).
+
+## Adaptaciones de este fork
+
+1. **Skills en español.** Traducción completa; los IDs de comando se mantienen idénticos al upstream (`/backlog`, `/story`, `/pair`) para compatibilidad.
+2. **Fase Quality gates en `/pair`.** Antes de sugerir commit, se corren los quality gates definidos en el `AGENTS.md` del proyecto (linters, typecheck, tests completos, estilo). Gates en verde = condición para proponer commit. Nunca se editan aprobaciones, snapshots o configs de estilo para hacerlos pasar.
+3. **`AGENTS.md` como contexto primero.** Las referencias a `CLAUDE.md` pasaron a `AGENTS.md` (con `CLAUDE.md` como alternativa), coherente con los repos del proyecto.
+
+## El flujo
 
 ```
 /backlog  →  /story  →  /pair
-  what       what exactly   how
+  qué        qué exacto   cómo
 ```
 
-| Skill | What it does | What it never does |
-|---|---|---|
-| [`/backlog`](skills/backlog/SKILL.md) | Turns an idea into a short backlog of vertical, one-line user stories. | Invent requirements, technical stories, estimates. |
-| [`/story`](skills/story/SKILL.md) | Takes **one** story, adds 2–3 Given/When/Then acceptance criteria and a mini plan (≤5 bullets) for your approval. | Write code. If it needs more than 3 criteria, it proposes splitting the story. |
-| [`/pair`](skills/pair/SKILL.md) | Pair programming: the AI drives, you navigate. One test → red → minimum code → green, then it stops and waits. | Commit, edit tests to make them pass, add things you didn't ask for. |
+| Skill | Qué hace | Qué nunca hace |
+| --- | --- | --- |
+| [`/backlog`](skills/backlog/SKILL.md) | Convierte una idea en un backlog corto de historias de usuario verticales de una línea. | Inventar requisitos, historias técnicas, estimaciones. |
+| [`/story`](skills/story/SKILL.md) | Toma **una** historia, agrega 2–3 criterios de aceptación Dado/Cuando/Entonces y un mini plan (≤5 bullets) para tu aprobación. | Escribir código. Si necesita más de 3 criterios, propone dividir la historia. |
+| [`/pair`](skills/pair/SKILL.md) | Pair programming: la IA conduce, tú navegas. Un test → rojo → código mínimo → verde, y se detiene a esperar. Antes del commit, quality gates del proyecto. | Commitear, editar tests para hacerlos pasar, agregar lo que no pediste. |
 
-Each skill's output is the next one's input, as blocks ready to paste into your tracker.
+La salida de cada skill es el input de la siguiente, en bloques listos para pegar en tu tracker.
 
-## Principles
+## Principios
 
-- **Don't invent.** Missing information gets asked, not filled in.
-- **The simplest thing that works.** No abstractions "for the future".
-- **Slice vertically and small.** Stories cross every layer; steps are one test and ~50 lines.
-- **Suggest, don't decide.** Patterns, refactors and commits are your call.
-- **Explicit checkpoints.** Every phase ends waiting for your approval.
+- **No inventar.** La información faltante se pregunta, no se rellena.
+- **Lo más simple que funcione.** Sin abstracciones "para el futuro".
+- **Slices verticales y pequeñas.** Las historias atraviesan todas las capas; los pasos son un test y ~50 líneas.
+- **Sugerir, no decidir.** Patrones, refactors y commits los decides tú.
+- **Checkpoints explícitos.** Cada fase termina esperando tu aprobación.
 
 ## Install
 
-Copy the skill folders into your Claude Code skills directory:
-
 ```bash
-git clone https://github.com/nschurmann/hola-ai.git
-cp -r hola-ai/skills/* ~/.claude/skills/        # all projects
-# or
-cp -r hola-ai/skills/* <your-project>/.claude/skills/   # one project
+git clone https://github.com/JotaConts/hola-ai.git
+
+# Global — todos los proyectos
+mkdir -p ~/.claude/skills ~/.config/opencode/skills
+cp -r hola-ai/skills/* ~/.claude/skills/
+cp -r hola-ai/skills/* ~/.config/opencode/skills/
+
+# O un solo proyecto
+cp -r hola-ai/skills/* <tu-proyecto>/.claude/skills/
 ```
 
-The skills are only invoked manually (`/backlog`, `/story`, `/pair`), never automatically.
+Las skills solo se invocan manualmente (`/backlog`, `/story`, `/pair`), nunca automáticamente.
 
-Or ask your agent to install these skills!
+## Modus operandi
+
+El método completo — flujo, roles, checkpoints, Definition of Done y cómo adoptarlo en un proyecto nuevo — está documentado en [MODUS_OPERANDI.md](MODUS_OPERANDI.md).
 
 ---
 
-By Hola Mundo.
+Basado en hola-ai de Hola Mundo. Fork mantenido por JotaConts.
