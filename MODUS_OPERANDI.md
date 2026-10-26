@@ -8,10 +8,10 @@ Este documento es el método de trabajo por defecto para proyectos que adopten l
 Requerimiento (spec, idea, reunión)
         │
         ▼
-    /backlog ──────► historias verticales (una línea c/u) ──► tracker (GitHub Issues)
+    /backlog ──────► historias verticales (una línea c/u) ──► tracker (Issues o backlog.md local)
         │
         ▼ (por cada historia, en orden)
-    /story ────────► 2–3 criterios + mini plan + fuera de alcance ──► cuerpo del issue
+    /story ────────► 2–3 criterios + mini plan + fuera de alcance ──► ficha de la historia
         │
         ▼
     /pair ─────────► lista de tests ──► ciclos TDD ──► quality gates ──► commit ──► PR
@@ -20,7 +20,7 @@ Requerimiento (spec, idea, reunión)
     Cierre: revisión con contexto limpio + verificación manual + merge
 ```
 
-**Un issue = una historia = un worktree/branch = un PR.** Una sesión de `/pair` trabaja una sola historia.
+**Una historia = un worktree/branch = un PR.** Una sesión de `/pair` trabaja una sola historia. El tracker puede ser GitHub Issues o un backlog local (ver §6.3).
 
 ## 2. Roles
 
@@ -68,7 +68,9 @@ Si una historia "cabeza" necesita más de 3 criterios, se divide (regla de `/sto
    - Los quality gates con sus comandos exactos (p. ej. `./entrypoint.sh lint && ./entrypoint.sh typecheck && ./entrypoint.sh test`).
    - El flujo de git (worktrees, branching, reglas de commit/PR).
    - Una línea apuntando a este método: `Modus operandi: /backlog → /story → /pair (ver fork hola-ai, MODUS_OPERANDI.md)`.
-3. Si el proyecto usa tracker (GitHub Issues, Jira…), las historias de `/backlog` se suben ahí; si no, se mantienen en el issue/PR de referencia.
+3. **Tracker de historias:** dos opciones válidas, elegir por proyecto:
+   - **Backlog local `.md`** (recomendado para equipos pequeños): versionado junto al spec, tabla con columnas `#`, `Historia`, `Estado`, `Ref` (branch/PR) y `Requiere`. El `Estado` se actualiza al cierre de cada sesión de `/pair` (`⬜ pendiente → 🔵 /story → 🟠 /pair → 🟣 PR → ✅ merge`). El fichero del `/story` (criterios + plan) vive como anexo en el mismo `.md` o en un sub-archivo por historia.
+   - **GitHub Issues / Jira** (recomendado si hay más personas o se necesita triage/CI): `/backlog` sube una issue por historia; `/story` arma el cuerpo del issue; el PR la cierra automáticamente (`closes #N`).
 4. Opcional: etiqueta dedicada para las historias (p. ej. `story` o las etiquetas de triage existentes).
 
 ## 7. Antipatrones (lo que este método evita)
