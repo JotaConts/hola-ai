@@ -61,7 +61,32 @@ Un documento de requerimiento tipo `REQ_*.md` (decisiones, criterios Gherkin, ma
 
 Si una historia "cabeza" necesita más de 3 criterios, se divide (regla de `/story`) y las nuevas historias vuelven al backlog.
 
-## 6. Adopción en un proyecto nuevo
+## 6. Registro de cierre de historia
+
+Al cerrar una historia (PR abierto o merge), se agrega un bloque **"Cierre #N"** al backlog del requerimiento (en la ficha de la historia en los Anexos, o una sección dedicada). Este registro es el contexto de entrada de las sesiones siguientes: antes de retomar un requerimiento se lee el backlog completo — tabla de estados + cierres.
+
+Formato del bloque:
+
+```markdown
+### Cierre #N — YYYY-MM-DD
+
+| Campo | Valor |
+|---|---|
+| Estado final | 🟣 PR #X (pendiente de merge) o ✅ merge |
+| Sesiones | fecha: qué se hizo (duración estimada) · … |
+| Tiempo total | estimado: timestamps de commits + duración de sesiones |
+| Commits | hashes cortos con etiqueta (docs / backend / frontend / backlog) |
+| Resumen | qué entrega la historia, en 2-4 líneas |
+| Lecciones | contratos pisados, trampas del entorno, decisiones que costaron tiempo |
+```
+
+Notas:
+
+- **El tiempo es una estimación declarada**, no una medición exacta: se deriva de los timestamps de los commits de la historia (primer → último) más la duración percibida de cada sesión. El humano puede corregir la cifra al revisar el backlog.
+- La sección **Lecciones** es la memoria técnica del proyecto: evita re-pisar contratos (tests de contrato, snapshots, approvals) y documenta trampas del entorno (p. ej. tests que dependen del SO).
+- En proyectos con skill de inicio de sesión (p. ej. `iniciar-sesion`), apuntarla a leer el backlog + cierres como primera fuente de contexto.
+
+## 7. Adopción en un proyecto nuevo
 
 1. Instalar las skills globalmente (ver README) — no requiere cambios en el proyecto.
 2. Agregar al `AGENTS.md` del proyecto (una sola vez):
@@ -73,7 +98,7 @@ Si una historia "cabeza" necesita más de 3 criterios, se divide (regla de `/sto
    - **GitHub Issues / Jira** (recomendado si hay más personas o se necesita triage/CI): `/backlog` sube una issue por historia; `/story` arma el cuerpo del issue; el PR la cierra automáticamente (`closes #N`).
 4. Opcional: etiqueta dedicada para las historias (p. ej. `story` o las etiquetas de triage existentes).
 
-## 7. Antipatrones (lo que este método evita)
+## 8. Antipatrones (lo que este método evita)
 
 - Specs que producen tareas técnicas ("crear modelo X") en vez de valor de usuario.
 - Dividir por capas (backend/UI) en vez de cortar verticalmente.
