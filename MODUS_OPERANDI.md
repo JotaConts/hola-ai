@@ -63,7 +63,9 @@ Si una historia "cabeza" necesita más de 3 criterios, se divide (regla de `/sto
 
 ## 6. Registro de cierre de historia
 
-Al cerrar una historia (PR abierto o merge), se agrega un bloque **"Cierre #N"** al backlog del requerimiento (en la ficha de la historia en los Anexos, o una sección dedicada). Este registro es el contexto de entrada de las sesiones siguientes: antes de retomar un requerimiento se lee el backlog completo — tabla de estados + cierres.
+Al cerrar una historia (PR abierto o merge), se agrega un bloque **"Cierre #N"** al backlog del requerimiento (en la ficha de la historia en los Anexos, o una sección dedicada). Este registro es el contexto de entrada de las sesiones siguientes: antes de retomar un requerimiento se lee el backlog completo — tabla de estados + fichas + cierres.
+
+Las skills [`/cierre-thread`](skills/cierre-thread/SKILL.md) y [`/inicio-thread`](skills/inicio-thread/SKILL.md) operacionalizan esta convención: el cierre verifica (worktree, gates, PR/CI), registra y entrega el handoff; el inicio carga el contexto, coteja con la realidad y propone el punto de partida — sin trabajar hasta que el humano lo apruebe.
 
 Formato del bloque:
 
@@ -84,7 +86,7 @@ Notas:
 
 - **El tiempo es una estimación declarada**, no una medición exacta: se deriva de los timestamps de los commits de la historia (primer → último) más la duración percibida de cada sesión. El humano puede corregir la cifra al revisar el backlog.
 - La sección **Lecciones** es la memoria técnica del proyecto: evita re-pisar contratos (tests de contrato, snapshots, approvals) y documenta trampas del entorno (p. ej. tests que dependen del SO).
-- En proyectos con skill de inicio de sesión (p. ej. `iniciar-sesion`), apuntarla a leer el backlog + cierres como primera fuente de contexto.
+- En proyectos con skill de arranque previa (p. ej. una `iniciar-sesion` local), retírala si `/inicio-thread` la reemplaza: dos fuentes de contexto compiten y una queda desactualizada.
 
 ## 7. Adopción en un proyecto nuevo
 

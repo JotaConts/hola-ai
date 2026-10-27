@@ -27,6 +27,13 @@ La IA divide, propone y escribe código en pasos pequeños. Tú decides.
 
 La salida de cada skill es el input de la siguiente, en bloques listos para pegar en tu tracker.
 
+## Transición entre threads
+
+| Skill | Qué hace | Qué nunca hace |
+| --- | --- | --- |
+| [`/cierre-thread`](skills/cierre-thread/SKILL.md) | Verifica el estado real (worktree, commits, gates, PR/CI), registra el bloque de cierre en el backlog y entrega el handoff con el prompt de arranque del siguiente thread. | Commitear código sin gates, descartar cambios sin preguntar, esconder fallas. |
+| [`/inicio-thread`](skills/inicio-thread/SKILL.md) | Carga spec + backlog + cierres, coteja con la realidad (PRs, CI, worktrees) y presenta el brief de arranque y el objetivo. | Empezar a trabajar sin instrucción explícita del humano. |
+
 ## Principios
 
 - **No inventar.** La información faltante se pregunta, no se rellena.
